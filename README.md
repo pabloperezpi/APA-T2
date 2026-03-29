@@ -52,7 +52,7 @@ python primos.py
 
 A continuación se muestra la ejecución de los tests unitarios en modo verboso:
 
-![Ejecución tests](tests.png)
+![Ejecución tests](test.png)
 
 ## Código fuente
 

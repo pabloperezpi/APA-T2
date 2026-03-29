@@ -1,108 +1,267 @@
-# Segunda tarea de APA 2026: Manejo de números primos
+# Segunda tarea APA 2026: Manejo de números primos
 
-> [!Caution]
->
-> El objetivo de esta tarea es manejar los tipos de datos y las estructuras de control de flujo de
-> Python. Existen bibliotecas que resuelven los apartados del enunciado de una manera más eficiente
-> y, sin duda, más sencilla, pero su uso está prohibido.
->
-> Además, se valorará también el uso de Markdown en la redacción del fichero README.md; en concreto,
-> la inclusión de código fuente con las herramientas propias de Markdown para su realce sintáctico, y
-> la inclusión de imágenes con las capturas de pantalla solicitadas. El fichero README.md deberá ser
-> visualizado correctamente desde la página principal del repositorio GitHub del alumno sin ninguna
-> intervención por parte del profesor.
->
-> Dispone del fichero MARKDOWN.md con información básica para el uso de Markdown, así como con enlaces
-> a la documentación oficial del mismo.
->
-> ¿Quiere saber más?, consulte con el profesorado.
-  
-## Nom i cognoms
+## Autor
+Pablo Pérez Pi
 
-> [!Important]
-> Introduzca a continuación su nombre y apellidos:
->
-> Fulano Mengano Zutano
+---
 
-## Fichero `primos.py`
+## Descripción
 
-- El alumno debe escribir el fichero `primos.py` que incorporará distintas funciones relacionadas con el manejo
-  de los números primos.
+En esta práctica se implementan distintas funciones en Python para trabajar con números primos, sin utilizar librerías externas, haciendo uso únicamente de estructuras de control y tipos de datos básicos.
 
-- El fichero debe incluir una cadena de documentación que incluirá el nombre del alumno y los tests unitarios
-  de las funciones incluidas.
+Las funcionalidades implementadas son:
 
-- Cada función deberá incluir su propia cadena de documentación que indicará el cometido de la función, los
-  argumentos de la misma y la salida proporcionada.
+- Determinación de números primos
+- Generación de números primos menores que un valor
+- Descomposición en factores primos
+- Cálculo del máximo común divisor (MCD)
+- Cálculo del mínimo común múltiplo (MCM)
 
-- Se valorará lo pythónico de la solución; en concreto, su claridad y sencillez, y el uso de los estándares marcados
-  por PEP-8. También se valorará su eficiencia computacional.
+---
 
-### Determinación de la *primalidad* y descomposición de un número en factores primos
+##  Funciones implementadas
 
-Incluya en el fichero `primos.py` las tres funciones siguientes:
+### `esPrimo(numero)`
+Determina si un número es primo.
 
-- `esPrimo(numero)`   Devuelve `True` si su argumento es primo, y `False` si no lo es.
-  - Se debe considerar que `numero` es un número natural y mayor que uno.
-  - En caso contrario, la función debe elevar la excepción `TypeError` y finalizar la ejecución.
-- `primos(numero)`    Devuelve una **tupla** con todos los números primos menores que su argumento.
-- `descompon(numero)` Devuelve una **tupla** con la descomposición en factores primos de su argumento.
+### `primos(numero)`
+Devuelve una tupla con todos los números primos menores que el número dado.
 
-### Obtención del mínimo común múltiplo y el máximo común divisor
+### `descompon(numero)`
+Devuelve la descomposición en factores primos de un número.
 
-Usando las tres funciones del apartado anterior (y cualquier otra que considere conveniente añadir), escriba otras
-dos que calculen el máximo común divisor y el mínimo común múltiplo de sus argumentos:
+### `mcd(*numeros)`
+Calcula el máximo común divisor de varios números.
 
-- `mcm(numero1, numero2)`:  Devuelve el mínimo común múltiplo de sus argumentos.
-- `mcd(numero1, numero2)`:  Devuelve el máximo común divisor de sus argumentos.
+### `mcm(*numeros)`
+Calcula el mínimo común múltiplo de varios números.
 
-Estas dos funciones deben cumplir las condiciones siguientes:
+---
 
-- Aunque se trate de una solución sub-óptima, en ambos casos deberá partirse de la descomposición en factores
-  primos de los argumentos usando las funciones del apartado anterior.
+##  Tests unitarios
 
-- Aunque también sea sub-óptimo desde el punto de vista de la programación, ninguna de las dos funciones puede
-  depender de la otra; cada una debe programarse por separado.
+Los tests están implementados usando `doctest` dentro del propio fichero `primos.py`.
 
-### Obtención del mínimo común múltiplo y el máximo común divisor para un número arbitrario de argumentos
+Para ejecutarlos:
 
-Modifique las funciones `mcm()` y `mcd()`, para que calculen el mínimo común múltiplo y el máximo común divisor
-para un número arbitrario de argumentos:
+```bash
+python primos.py
+```
 
-- `mcm(*numeros)`:  Devuelve el mínimo común múltiplo de sus argumentos.
-- `mcd(*numeros)`:  Devuelve el máximo común divisor de sus argumentos.
+## Ejecución de los tests
 
-### Tests unitarios
+A continuación se muestra la ejecución de los tests unitarios en modo verboso:
 
-La cadena de documentación del fichero debe incluir los tests unitarios de las cinco funciones. En concreto, deberán
-comprobarse las siguientes condiciones:
+![Ejecución tests](tests.png)
 
-- `esPrimo(numero)`:  Al ejecutar `[ numero for numero in range(2, 50) if esPrimo(numero) ]`, la salida debe ser
-                      `[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]`.
-- `primos(numeor)`: Al ejecutar `primos(50)`, la salida debe ser `(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47)`.
-- `descompon(numero)`: Al ejecutar `descompon(36 * 175 * 143)`, la salida debe ser `(2, 2, 3, 3, 5, 5, 7, 11, 13)`.
-- `mcm(num1, num2)`: Al ejecutar `mcm(90, 14)`, la salida debe ser `630`.
-- `mcd(num1, num2)`: Al ejecutar `mcd(924, 780)`, la salida debe ser `12`.
-- `mcm(numeros)`: Al ejecutar `mcm(42, 60, 70, 63)`, la salida debe ser `1260`.
-- `mcd(numeros)`: Al ejecutar `mcd(840, 630, 1050, 1470)`, la salida debe ser `210`.
+## Código fuente
 
-### Entrega
+```bash
+"""
+primos.py
 
-#### Ejecución de los tests unitarios
+Autor: Pablo Pérez Pi
 
-Inserte a continuación una captura de pantalla que muestre el resultado de ejecutar el fichero `primos.py` con la opción
-*verbosa*, de manera que se muestre el resultado de la ejecución de los tests unitarios.
+Módulo para el manejo de números primos.
 
-#### Código desarrollado
+Tests unitarios (ejecutar con: python -m doctest -v primos.py)
 
-Inserte a continuación el contenido del fichero `primos.py` usando los comandos necesarios para que se realice el
-realce sintáctico en Python del mismo.
+>>> [numero for numero in range(2, 50) if esPrimo(numero)]
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
 
-#### Subida del resultado al repositorio GitHub ¿y *pull-request*?
+>>> primos(50)
+(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47)
 
-El fichero `primos.py`, la imagen con la ejecución de los tests unitarios y este mismo fichero, `README.md`, deberán
-subirse al repositorio GitHub mediante la orden `git push`. Si los profesores de la asignatura consiguen montar el
-sistema a tiempo, la entrega se formalizará realizando un *pull-request* al propietario del repositorio original.
+>>> descompon(36 * 175 * 143)
+(2, 2, 3, 3, 5, 5, 7, 11, 13)
 
-El fichero `README.md` deberá respetar las reglas de los ficheros Markdown y visualizarse correctamente en el repositorio,
-incluyendo la imagen con la ejecución de los tests unitarios y el realce sintáctico del código fuente insertado.
+>>> mcm(90, 14)
+630
+
+>>> mcd(924, 780)
+12
+
+>>> mcm(42, 60, 70, 63)
+1260
+
+>>> mcd(840, 630, 1050, 1470)
+210
+"""
+
+
+def esPrimo(numero):
+    """
+    Determina si un número es primo.
+
+    Args:
+        numero (int): Número natural mayor que 1.
+
+    Returns:
+        bool: True si es primo, False en caso contrario.
+
+    Raises:
+        TypeError: Si numero no es natural mayor que 1.
+    """
+    if not isinstance(numero, int) or numero <= 1:
+        raise TypeError("El número debe ser natural y mayor que 1")
+
+    if numero <= 3:
+        return True
+
+    if numero % 2 == 0 or numero % 3 == 0:
+        return False
+
+    i = 5
+    while i * i <= numero:
+        if numero % i == 0 or numero % (i + 2) == 0:
+            return False
+        i += 6
+
+    return True
+
+
+def primos(numero):
+    """
+    Devuelve una tupla con los números primos menores que numero.
+
+    Args:
+        numero (int): Número límite.
+
+    Returns:
+        tuple: Tupla de números primos menores que numero.
+    """
+    if not isinstance(numero, int) or numero <= 1:
+        raise TypeError("El número debe ser mayor que 1")
+
+    return tuple(n for n in range(2, numero) if esPrimo(n))
+
+
+def descompon(numero):
+    """
+    Devuelve la descomposición en factores primos de un número.
+
+    Args:
+        numero (int): Número natural mayor que 1.
+
+    Returns:
+        tuple: Factores primos ordenados.
+    """
+    if not isinstance(numero, int) or numero <= 1:
+        raise TypeError("El número debe ser natural y mayor que 1")
+
+    factores = []
+    divisor = 2
+
+    while numero > 1:
+        while numero % divisor == 0:
+            factores.append(divisor)
+            numero //= divisor
+        divisor += 1
+
+    return tuple(factores)
+
+
+def contar_factores(factores):
+    """
+    Cuenta cuántas veces aparece cada factor primo.
+
+    Args:
+        factores (tuple): Factores primos.
+
+    Returns:
+        dict: Diccionario {primo: exponente}
+    """
+    conteo = {}
+    for f in factores:
+        if f in conteo:
+            conteo[f] += 1
+        else:
+            conteo[f] = 1
+    return conteo
+
+
+def mcd(*numeros):
+    """
+    Calcula el máximo común divisor de varios números.
+
+    Args:
+        *numeros: Enteros mayores que 1.
+
+    Returns:
+        int: Máximo común divisor.
+    """
+    if len(numeros) == 0:
+        raise TypeError("Se requiere al menos un número")
+
+    for n in numeros:
+        if not isinstance(n, int) or n <= 1:
+            raise TypeError("Todos los números deben ser enteros > 1")
+
+    factorizaciones = [contar_factores(descompon(n)) for n in numeros]
+
+    comunes = factorizaciones[0].copy()
+
+    for f in factorizaciones[1:]:
+        nuevos = {}
+        for primo in comunes:
+            if primo in f:
+                nuevos[primo] = min(comunes[primo], f[primo])
+        comunes = nuevos
+
+    resultado = 1
+    for primo, exp in comunes.items():
+        resultado *= primo ** exp
+
+    return resultado
+
+
+def mcm(*numeros):
+    """
+    Calcula el mínimo común múltiplo de varios números.
+
+    Args:
+        *numeros: Enteros mayores que 1.
+
+    Returns:
+        int: Mínimo común múltiplo.
+    """
+    if len(numeros) == 0:
+        raise TypeError("Se requiere al menos un número")
+
+    for n in numeros:
+        if not isinstance(n, int) or n <= 1:
+            raise TypeError("Todos los números deben ser enteros > 1")
+
+    factorizaciones = [contar_factores(descompon(n)) for n in numeros]
+
+    comunes = {}
+
+    for f in factorizaciones:
+        for primo, exp in f.items():
+            if primo in comunes:
+                comunes[primo] = max(comunes[primo], exp)
+            else:
+                comunes[primo] = exp
+
+    resultado = 1
+    for primo, exp in comunes.items():
+        resultado *= primo ** exp
+
+    return resultado
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)
+```
+## Entrega
+
+El repositorio contiene:
+
+primos.py → Código fuente
+
+README.md → Documentación
+
+tests.png → Captura de la ejecución de los tests
+    
+    
